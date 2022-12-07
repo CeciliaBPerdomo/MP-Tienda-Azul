@@ -1,21 +1,52 @@
+import axios from "axios"
+let direccion = process.env.BACKEND_URL;
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			celulares: [],
+			celular: {},
 		},
 		actions: {
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			///                                          ///
+			///             CELULARES                    /// 
+			///                                          ///
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+
+			/* Listar celulares */ 
+			mostrarCelulares: async () => {
+				try {
+                    const response = await axios.get(direccion + "celular", {});
+                    setStore({
+                        celulares: response.data,
+                    });
+                } catch (error) {
+                    console.log(error);
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        console.log(error.response.data.msg);
+                    }
+                }
+			},
+
+			// obtener celular por Id
+            obtenerCelularId: async (id) => {
+                try {
+                    const response = await axios.get(direccion + "celular/" + id, {});
+                    setStore({
+                        celular: response.data,
+                    });
+                    return response.data;
+                } catch (error) {
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        console.log(error.response.data.msg);
+                    }
+                }
+            },
+
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
@@ -24,7 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+					const resp = await fetch(process.env.BACKEND_URL + "hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves

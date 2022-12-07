@@ -9,6 +9,7 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Compra } from "./component/compra.jsx";
 
 //create your first component
 const Layout = () => {
@@ -22,7 +23,10 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
+                        {/* Home */}
                         <Route element={<Home />} path="/" />
+                        {/* Compra */}
+                        <Route element={<Compra />} path="/compra/:theid" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
