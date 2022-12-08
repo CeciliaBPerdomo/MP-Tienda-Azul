@@ -25,8 +25,8 @@ export const Home = () => {
 								<div className="card-body">
 									<p className="card-text">{item.descripcion}</p>
 									<p className="card-text">Disponibles: {item.cantidad}</p>
-									<p className="card-text">Precio: u$s <b>{item.precio}</b></p>
-									<Link to={"/compra/" + item.id} className="btn btn-outline-success position-absolute bottom-0 end-0"
+									<p className="card-text text-end" style={{color: "red"}}>Precio: u$s <b>{item.precio}</b></p>
+									<Link to={"/compra/" + item.id} className="btn btn-outline-danger position-absolute bottom-0 end-0"
 									style={{marginRight: "25px", marginBottom: "25px"}}>
 										Comprar
 									</Link>

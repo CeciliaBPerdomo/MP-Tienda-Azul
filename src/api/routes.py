@@ -58,7 +58,7 @@ def get_celular(celular_id):
 ################################################
 @api.route('/createPreference', methods=['POST'])
 def createPreference():
-    body = json.loads(request.data)
+    #body = json.loads(request.data)
     #cuota = body["cuota"]
 # Crea un ítem en la preferencia
     preference_data = {

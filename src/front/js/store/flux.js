@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			celulares: [],
 			celular: {},
+			mercadopago: {}, 
 		},
 		actions: {
 			////////////////////////////////////////////////
@@ -45,6 +46,30 @@ const getState = ({ getStore, getActions, setStore }) => {
                     }
                 }
             },
+
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			///                                          ///
+			///            MERCADO PAGO                  /// 
+			///                                          ///
+			////////////////////////////////////////////////
+			////////////////////////////////////////////////
+			pagoMercadoPago: async () => {
+                try {
+                    const response = await axios.post(
+                        direccion + "createPreference", {
+                            //cuota: cuota,
+                        }
+                    );
+                    setStore({
+                        mercadopago: response.data,
+                    });
+                    console.log(response.data);
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+
 
 
 			// Use getActions to call a function within a fuction
