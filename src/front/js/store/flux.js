@@ -54,11 +54,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			///                                          ///
 			////////////////////////////////////////////////
 			////////////////////////////////////////////////
-			pagoMercadoPago: async () => {
+			pagoMercadoPago: async (id, marca, modelo, foto, precio, cantidad) => {
                 try {
                     const response = await axios.post(
                         direccion + "createPreference", {
-                            //cuota: cuota,
+                           	id: id, 
+							marca: marca,
+							modelo: modelo,
+							foto: foto,
+							precio: precio,
+							cantidad: cantidad
                         }
                     );
                     setStore({

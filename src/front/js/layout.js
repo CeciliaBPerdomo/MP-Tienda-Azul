@@ -10,6 +10,9 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Compra } from "./component/compra.jsx";
+import { Success } from "./component/back_urls/success.jsx"
+import { Failure } from "./component/back_urls/failure.jsx";
+import { Pending } from "./component/back_urls/pending.jsx";
 
 //create your first component
 const Layout = () => {
@@ -25,8 +28,17 @@ const Layout = () => {
                     <Routes>
                         {/* Home */}
                         <Route element={<Home />} path="/" />
+                       
                         {/* Compra */}
-                        <Route element={<Compra />} path="/compra/:theid" />
+                        <Route element={<Compra />} path="/compra/:theid" /> 
+                        {/* Compra exitosa */}
+                        <Route element={<Success />} path="/success" />
+                        {/* Compra fallida */}
+                        <Route element={<Failure />} path="/failure" />
+                        {/* Compra pendiente */}
+                        <Route element={<Pending />} path="/pending" />
+
+                        {/* Por defecto en la plantilla */}
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />

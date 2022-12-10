@@ -17,7 +17,7 @@ export const Home = () => {
 				<div className="row">
 					{store.celulares.map((item, id) => (
 					<div className="col-sm-4" key={id}>
-						<div className="card" style={{marginTop: "25px", height: "550px"}}>
+						<div className="card" style={{marginTop: "25px", height: "570px"}}>
 							<div className="card-body">
 								<h5 className="card-title fw-bold">{item.marca} {item.modelo}</h5>
 								<img src={item.foto} className="d-flex justify-content-center" 
@@ -25,9 +25,13 @@ export const Home = () => {
 								<div className="card-body">
 									<p className="card-text">{item.descripcion}</p>
 									<p className="card-text">Disponibles: {item.cantidad}</p>
-									<p className="card-text text-end" style={{color: "red"}}>Precio: u$s <b>{item.precio}</b></p>
-									<Link to={"/compra/" + item.id} className="btn btn-outline-danger position-absolute bottom-0 end-0"
-									style={{marginRight: "25px", marginBottom: "25px"}}>
+									<p className="card-text text-end" style={{color: "red"}}>
+										Precio: u$s <b>{item.precio}</b>
+									</p>
+								</div>
+								<div className="card-body" style={{}}>
+									<Link to={"/compra/" + item.id} className="btn btn-outline-primary float-end"
+									style={{marginBottom: "25px"}}>
 										Comprar
 									</Link>
 								</div>
