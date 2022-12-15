@@ -32,11 +32,11 @@ const Layout = () => {
                         {/* Compra */}
                         <Route element={<Compra />} path="/compra/:theid" /> 
                         {/* Compra exitosa */}
-                        <Route element={<Success />} path="/success" />
+                        <Route element={<Success />} path="/success/:theid" />
                         {/* Compra fallida */}
-                        <Route element={<Failure />} path="/failure" />
+                        <Route element={<Failure />} path="/failure/:theid" />
                         {/* Compra pendiente */}
-                        <Route element={<Pending />} path="/pending" />
+                        <Route element={<Pending />} path="/pending/:theid" />
 
                         {/* Por defecto en la plantilla */}
                         <Route element={<Demo />} path="/demo" />

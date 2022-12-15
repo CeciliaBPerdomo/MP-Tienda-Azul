@@ -47,6 +47,26 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
 
+			// Buscador de celular
+			buscarCelular: async (valor) => {
+				// Carga todos los celulares por si hay una segunda busqueda
+				await getActions().mostrarCelulares()
+
+                let resultados = getStore().celulares.filter((item) => {
+					// Busca por marca
+                    if (item.marca.toString().toLowerCase().includes(valor.toLowerCase())) {
+                        return valor;
+					// Busca por modelo
+                    } else if (item.modelo.toString().toLowerCase().includes(valor.toLowerCase())) {
+						return valor;
+					}
+                });
+
+                setStore({
+                    celulares: resultados,
+                });
+            },
+
 			////////////////////////////////////////////////
 			////////////////////////////////////////////////
 			///                                          ///

@@ -108,9 +108,9 @@ def createPreference():
         "external_reference": "cecilia.perdomo@gmail.com",
         # Adonde te re-dirige en caso de exito total / o no
         "back_urls": {
-	     	"success": "/success",
-	 		"failure": "/failure",
-	 		"pending": "/pending"
+	     	"success": "localhost:3000/success/" + str(id),
+	 		"failure": "localhost:3000/failure/" + str(id),
+	 		"pending": "localhost:3000/pending/" + str(id)
 	     },
         "auto_return": "approved"
     }

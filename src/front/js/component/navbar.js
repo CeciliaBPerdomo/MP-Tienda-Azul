@@ -10,13 +10,6 @@ export const Navbar = () => {
 					className="rounded-circle" 
 					style={{width: "130px"}}/>
 				</Link>
-
-				<div className="">
-					<form className="d-flex" role="search">
-						<input className="form-control me-2 rounded-pill" type="search" placeholder="Buscar celular" aria-label="Search"/>
-						<button className="btn btn-primary rounded-pill" type="submit">Buscar</button>
-					</form>
-				</div>
 			</div>
 		</nav>
 	);
