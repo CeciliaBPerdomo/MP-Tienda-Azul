@@ -8,7 +8,19 @@ export const Success = () => {
 
     useEffect(() => {
         actions.obtenerCelularId(parseInt(params.theid))
+
+        // Obtiene el id de pago que viene por parametro en la URL
+        const querystring = window.location.search
+        const valorURL = new URLSearchParams(querystring)
+        let id = valorURL.get('payment_id')
+
+        const getPago = async () => {
+            await actions.obtenerPagoMercado(id)
+        }
+        
+        getPago()
     }, []);
+
 
     return (
         <>

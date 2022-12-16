@@ -14,11 +14,6 @@ export const Home = () => {
             actions.mostrarCelulares();
         } else {
             await actions.buscarCelular(valor);
-			
-			// if (store.celulares.length === 0) {
-			// 	console.log("Hola")
-			// 	document.getElementsByName("invisible").className = "visible"
-			// }
         }
     };
 
