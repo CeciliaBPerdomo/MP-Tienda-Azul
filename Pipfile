@@ -18,7 +18,7 @@ gunicorn = "*"
 cloudinary = "*"
 flask-admin = "*"
 typing-extensions = "*"
-mariadb = "*"
+mariadb = "==1.1.5"
 mercadopago = "*"
 
 [requires]
