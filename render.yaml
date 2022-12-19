@@ -34,7 +34,7 @@
 services:
     - type: web # valid values: https://render.com/docs/yaml-spec#type
       region: ohio
-      name: sample-service-name #aca le ponen el nombre que quieran que tenga la pagina
+      name: tiendaAzul #aca le ponen el nombre que quieran que tenga la pagina
       env: python # valid values: https://render.com/docs/yaml-spec#environment
       buildCommand: "./render_build.sh"
       startCommand: "gunicorn wsgi --chdir ./src/"
