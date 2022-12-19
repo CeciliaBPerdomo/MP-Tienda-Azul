@@ -247,7 +247,7 @@
                 "sha256:f62871436dcea35fd5fb0ec453139aef51cb19da04b0504c26648c9dcc4da3e7"
             ],
             "index": "pypi",
-            "version": "==3.3.1"
+            "version": "==1.1.5"
         },
         "markupsafe": {
             "hashes": [
