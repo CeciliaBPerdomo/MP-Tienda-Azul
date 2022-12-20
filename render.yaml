@@ -51,6 +51,8 @@ services:
             fromDatabase:
                 name: postgresql-trapezoidal-42170
                 property: connectionString
+          - key: FLASK_APP_KEY # Imported from Heroku app
+            value: "any key works"
           # - key: FLASK_APP_KEY
           #   value: "any key works"
           # # Conexiones de MercadoPago
