@@ -51,13 +51,13 @@ services:
             fromDatabase:
                 name: postgresql-trapezoidal-42170
                 property: connectionString
-          - key: FLASK_APP_KEY
-            value: "any key works"
-          # Conexiones de MercadoPago
-          - key: ACCESS_TOKEN
-            value: APP_USR-2815099995655791-092911-c238fdac299eadc66456257445c5457d-1160950667
-          - key: GETACCESS_TOKEN
-            value: TEST-2815099995655791-092911-147d97da9f81833ec976b282edb7f40e-1160950667
+          # - key: FLASK_APP_KEY
+          #   value: "any key works"
+          # # Conexiones de MercadoPago
+          # - key: ACCESS_TOKEN
+          #   value: APP_USR-2815099995655791-092911-c238fdac299eadc66456257445c5457d-1160950667
+          # - key: GETACCESS_TOKEN
+          #   value: TEST-2815099995655791-092911-147d97da9f81833ec976b282edb7f40e-1160950667
 
 databases: # Render PostgreSQL database
     - name: postgresql-trapezoidal-42170
