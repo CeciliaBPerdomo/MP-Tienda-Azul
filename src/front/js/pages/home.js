@@ -53,7 +53,7 @@ export const Home = () => {
 						<div className="card-body">
 						  <h5 className="card-title">Ups! Lo sentimos mucho!</h5>
 						  <br />
-						  <p className="card-text">Pero no podemos encontrar el módelo de celular qué estás buscando, intentá con otro!</p>
+						  <p className="card-text">Pero no podemos encontrar el celular qué estás buscando, intentá con otro!</p>
 						</div>
 					  </div>
 					</div>
