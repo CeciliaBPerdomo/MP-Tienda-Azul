@@ -20,6 +20,7 @@ flask-admin = "*"
 typing-extensions = "*"
 mariadb = "==1.0.11"
 mercadopago = "*"
+pygresql = "*"
 
 [requires]
 python_version = "3.8"
