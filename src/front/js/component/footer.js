@@ -5,7 +5,7 @@ export const Footer = () => (
 	style={{backgroundColor: "#a0d2f3", height: "120px"}}>
 		<b>
 			<p style={{ marginTop: "18px", fontSize: "17px"}}>
-				Hecho con <i className="fa fa-heart text-danger" /> por Cecilia Perdomo
+				Hecho con <i className="fa fa-heart text-danger" /> por <a href="https://www.linkedin.com/in/cecilia-perdomo/" style={{textDecoration: "none", color: "black"}}>Cecilia Perdomo</a>
 			</p>
 		</b>
 		<small>Ver <a href="https://github.com/CeciliaBPerdomo/MP-Tienda-Azul" style={{textDecoration: "none"}}>

@@ -6,6 +6,14 @@ psql -U gitpod -c 'CREATE EXTENSION unaccent;' -d example &&
 pipenv run migrate &&
 pipenv run upgrade
 
+################################################################
+################################################################
+
+#                   MARIADB
+
+################################################################
+################################################################
+
 # --- Borrar manualmente la carpeta migrations
 # pipenv run init
 # mysql -u root -p (Abre MariaDB)
@@ -15,3 +23,4 @@ pipenv run upgrade
 # ctrl + c
 # pipenv run migrate
 # pipenv run upgrade
+# pipenv run start
