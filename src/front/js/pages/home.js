@@ -39,7 +39,7 @@ export const Home = () => {
 				</div>
 
 				
-				{store.celulares.length === 0 ?
+				{store.celulares?.length === 0 ?
 					<div className="card mb-3" style={{maxWidth: "540px", marginTop: "30px", marginLeft: "25px"}}>
 					<div className="row g-0">
 					  <div className="col-md-4">
@@ -62,7 +62,7 @@ export const Home = () => {
 
 				{/* Celulares */}
 				<div className="row">
-					{store.celulares.map((item, id) => (
+					{store.celulares?.map((item, id) => (
 					<div className="col-sm-4" key={id}>
 						<div className="card" style={{marginTop: "25px", height: "650px"}}>
 							<div className="card-body">
