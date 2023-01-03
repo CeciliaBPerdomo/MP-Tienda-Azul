@@ -34,6 +34,7 @@ def handle_hello():
 def getCelular():
     celular = Celular.query.all()
     results = list(map(lambda x: x.serialize(), celular))
+    print(results)
     return jsonify(results), 200
 
 # Busca por id de celular

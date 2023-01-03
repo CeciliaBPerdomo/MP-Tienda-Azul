@@ -22,6 +22,8 @@ export const Home = () => {
         actions.mostrarCelulares();
     }, []);
 
+	console.log(store.celulares)
+
 	return (
 		<>
 			<div className="container" style={{marginBottom: "35px"}}>
