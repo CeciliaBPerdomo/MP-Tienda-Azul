@@ -34,9 +34,11 @@ def handle_hello():
 def getCelular():
     celular = Celular.query.all()
     results = list(map(lambda x: x.serialize(), celular))
+
     if results is None: 
         response_body = {"msg": "No existe datos"}
         return jsonify(response_body), 400
+
     return jsonify(results), 200
 
 # Busca por id de celular
@@ -51,6 +53,30 @@ def get_celular(celular_id):
     result = celular.serialize()
     return jsonify(result), 200
 
+# Crea un nuevo celular 
+@api.route('/celular', methods=['POST'])
+def postCelular():
+    body = json.loads(request.data)
+    queryNewCelular = Celular.query.filter_by(modelo=body["modelo"]).first()
+
+    if queryNewCelular is None: 
+        newCelular = Celular(
+            marca = body["marca"], 
+            modelo = body["modelo"], 
+            foto = body["foto"],
+            descripcion = body["descripcion"],
+            precio = body["precio"],
+            cantidad = body["cantidad"]
+        )
+
+        db.session.add(newCelular)
+        db.session.commit()
+
+        response_body = { "msg": "Celular creado" }
+        return jsonify(response_body), 200
+    
+    response_body = { "msg": "Celular ya creado" }
+    return jsonify(response_body), 400
 
 ################################################
 ################################################

@@ -13,6 +13,7 @@ import { Compra } from "./component/compra.jsx";
 import { Success } from "./component/back_urls/success.jsx"
 import { Failure } from "./component/back_urls/failure.jsx";
 import { Pending } from "./component/back_urls/pending.jsx";
+import { AgregarCelular } from "./component/agregarCelular.jsx";
 
 //create your first component
 const Layout = () => {
@@ -28,7 +29,9 @@ const Layout = () => {
                     <Routes>
                         {/* Home */}
                         <Route element={<Home />} path="/" />
-                       
+                        {/* Para agregar un nuevo celular */}
+                        <Route element={<AgregarCelular />} path="/agregarCelular" />
+
                         {/* Compra */}
                         <Route element={<Compra />} path="/compra/:theid" /> 
                         {/* Compra exitosa */}

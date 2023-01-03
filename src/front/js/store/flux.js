@@ -22,28 +22,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 			/* Listar celulares */ 
 			mostrarCelulares: async () => {
 				try {
-                    //const response = await axios.get(direccion + "/api/celular", {});
-					// const response = await fetch(direccion + "/api/celular")
-					// const data = await response.json()
-					// console.log(data)
 					await fetch(direccion + "/api/celular")
 					.then((response) => {
-						//console.log(response.json())
 						return response.json()
 					})
 					.then((data) => {
 						console.log(data)
 						setStore({ celulares: data })
 					})
-                    // setStore({
-                    //     celulares: data,
-                    // });
                 } catch (error) { 
                     console.log(error);
                     if (error.code === "ERR_BAD_REQUEST") {
                         console.log(error.response.data.msg);
                     }
                 }
+			},
+
+			agregarCelular: async(marca, modelo, foto, descripcion, precio, cantidad) => {
+				try {
+					const response = await axios.post(direccion + "/api/celular", {
+						marca: marca, 
+						modelo: modelo, 
+						foto: foto, 
+						descripcion: descripcion, 
+						precio: precio, 
+						cantidad: cantidad
+					});
+					console.log(response)
+				} catch (error){
+					console.log(error);
+                    if (error.code === "ERR_BAD_REQUEST") {
+                        console.log(error.response.data.msg);
+                    }
+				}
 			},
 
 			// obtener celular por Id

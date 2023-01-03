@@ -23,7 +23,6 @@ export const Home = () => {
     }, []);
 
 	console.log(store.celulares)
-	//console.warn(xhr.responseText)
 
 	return (
 		<>
