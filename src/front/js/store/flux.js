@@ -20,15 +20,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 			////////////////////////////////////////////////
 
 			/* Listar celulares */ 
-			mostrarCelulares: async () => {
+			mostrarCelulares: () => {
 				try {
                     //const response = await axios.get(direccion + "/api/celular", {});
-					const response = await fetch(direccion + "/api/celular")
-					const data = await response.json()
-					console.log(data)
-                    setStore({
-                        celulares: data,
-                    });
+					// const response = await fetch(direccion + "/api/celular")
+					// const data = await response.json()
+					// console.log(data)
+					fetch(direccion + "/api/celular")
+					.then((response) => {
+						//console.log(response.json())
+						return response.json()
+					})
+					.then(function(data){
+						console.log(data)
+						setStore({ celulares: data })
+					})
+                    // setStore({
+                    //     celulares: data,
+                    // });
                 } catch (error) { 
                     console.log(error);
                     if (error.code === "ERR_BAD_REQUEST") {
