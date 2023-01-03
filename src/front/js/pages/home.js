@@ -23,7 +23,7 @@ export const Home = () => {
     }, []);
 
 	console.log("Home.js" + store.celulares)
-	console.warn(xhr.responseText)
+	//console.warn(xhr.responseText)
 
 	return (
 		<>
