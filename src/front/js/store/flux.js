@@ -22,12 +22,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			/* Listar celulares */ 
 			mostrarCelulares: async () => {
 				try {
-                    const response = await axios.get(direccion + "/api/celular", {});
-					console.log("Flux.js" + response.data)
+                    //const response = await axios.get(direccion + "/api/celular", {});
+					const response = await fetch(direccion + "/api/celular")
+					const data = await response.json()
+					console.log(data)
                     setStore({
-                        celulares: response.data,
+                        celulares: data,
                     });
-                } catch (error) {
+                } catch (error) { 
                     console.log(error);
                     if (error.code === "ERR_BAD_REQUEST") {
                         console.log(error.response.data.msg);
