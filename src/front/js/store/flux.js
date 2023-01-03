@@ -20,18 +20,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 			////////////////////////////////////////////////
 
 			/* Listar celulares */ 
-			mostrarCelulares: () => {
+			mostrarCelulares: async () => {
 				try {
                     //const response = await axios.get(direccion + "/api/celular", {});
 					// const response = await fetch(direccion + "/api/celular")
 					// const data = await response.json()
 					// console.log(data)
-					fetch(direccion + "/api/celular")
+					await fetch(direccion + "/api/celular")
 					.then((response) => {
 						//console.log(response.json())
 						return response.json()
 					})
-					.then(function(data){
+					.then((data) => {
 						console.log(data)
 						setStore({ celulares: data })
 					})
