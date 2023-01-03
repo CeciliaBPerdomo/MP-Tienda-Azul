@@ -23,7 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			mostrarCelulares: async () => {
 				try {
                     const response = await axios.get(direccion + "/api/celular", {});
-					console.log(response.data)
+					console.log("Flux.js" + response.data)
                     setStore({
                         celulares: response.data,
                     });

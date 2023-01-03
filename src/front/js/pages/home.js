@@ -22,7 +22,8 @@ export const Home = () => {
         actions.mostrarCelulares();
     }, []);
 
-	console.log(store.celulares)
+	console.log("Home.js" + store.celulares)
+	console.warn(xhr.responseText)
 
 	return (
 		<>
