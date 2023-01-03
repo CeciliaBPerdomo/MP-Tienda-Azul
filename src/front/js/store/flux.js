@@ -1,7 +1,6 @@
 import axios from "axios"
 let direccion = process.env.BACKEND_URL;
-//let accessToken = process.env.GETACCESS_TOKEN;
-let accessToken = "TEST-2815099995655791-092911-147d97da9f81833ec976b282edb7f40e-1160950667"
+let accessToken = process.env.GETACCESS_TOKEN;
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -23,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			/* Listar celulares */ 
 			mostrarCelulares: async () => {
 				try {
-                    const response = await axios.get(direccion + "celular", {});
+                    const response = await axios.get(direccion + "/api/celular", {});
                     setStore({
                         celulares: response.data,
                     });
@@ -38,7 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// obtener celular por Id
             obtenerCelularId: async (id) => {
                 try {
-                    const response = await axios.get(direccion + "celular/" + id, {});
+                    const response = await axios.get(direccion + "/api/celular/" + id, {});
                     setStore({
                         celular: response.data,
                     });
@@ -80,7 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			pagoMercadoPago: async (id, marca, modelo, foto, precio, cantidad) => {
                 try {
                     const response = await axios.post(
-                        direccion + "createPreference", {
+                        direccion + "/api/createPreference", {
                            	id: id, 
 							marca: marca,
 							modelo: modelo,
@@ -162,7 +161,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "hello")
+					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
