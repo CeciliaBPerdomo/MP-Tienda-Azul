@@ -27,7 +27,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json()
 					})
 					.then((data) => {
-						console.log(data)
 						setStore({ celulares: data })
 					})
                 } catch (error) { 
@@ -48,7 +47,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						precio: precio, 
 						cantidad: cantidad
 					});
-					console.log(response)
 				} catch (error){
 					console.log(error);
                     if (error.code === "ERR_BAD_REQUEST") {
@@ -99,7 +97,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			///                                          ///
 			////////////////////////////////////////////////
 			////////////////////////////////////////////////
-			pagoMercadoPago: async (id, marca, modelo, foto, precio, cantidad) => {
+			pagoMercadoPago: async (id, marca, modelo, foto, precio, cuota) => {
                 try {
                     const response = await axios.post(
                         direccion + "/api/createPreference", {
@@ -108,7 +106,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							modelo: modelo,
 							foto: foto,
 							precio: precio,
-							cantidad: cantidad
+							cuota: cuota
                         }
                     );
                     setStore({
@@ -123,6 +121,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			obtenerPagoMercado: async (id) => {
 				try {
 					const response = await axios.get(
+						// 1311762485
 						"https://api.mercadopago.com/v1/payments/" + id, {
 						headers: { 
                             Authorization: "Bearer " + accessToken,
@@ -132,7 +131,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         comprador: response.data,
                     });
 					// Id de pago
-					console.log(response.data.id)
+					console.log(response.data)
 				} catch(error){
 					console.log(error);
 				}

@@ -11,6 +11,7 @@ import os
 import mercadopago
 # Agrega credenciales
 sdk = mercadopago.SDK(os.getenv('ACCESS_TOKEN'))
+GETACCESS_TOKEN = os.getenv("GETACCESS_TOKEN")
 
 api = Blueprint('api', __name__)
 
@@ -88,13 +89,12 @@ def postCelular():
 @api.route('/createPreference', methods=['POST'])
 def createPreference():
     body = json.loads(request.data)
-    #cuota = body["cuota"]
     marca = body["marca"]
     modelo = body["modelo"]
     precio = body["precio"]
     id = body["id"]
     foto = body["foto"]
-    cantidad = body["cantidad"]
+    cuota = body["cuota"]
 # Crea un ítem en la preferencia
     preference_data = {
         "items": [
@@ -126,7 +126,7 @@ def createPreference():
         },
         "payment_methods": {
             # Cantidad de cuotas
-            "installments": cantidad,
+            "installments": cuota,
             "excluded_payment_methods": [
                 {
                     # Exclusion de visa
@@ -135,15 +135,18 @@ def createPreference():
             ],
         },
         "external_reference": "cecilia.perdomo@gmail.com",
+        #URL donde van las notificaciones de pago.
+        "notification_url": "https://tiendaazul.onrender.com/notificaciones", 
         # Adonde te re-dirige en caso de exito total / o no
         "back_urls": {
-	     	"success": "localhost:3000/success/" + str(id),
-	 		"failure": "localhost:3000/failure/" + str(id),
-	 		"pending": "localhost:3000/pending/" + str(id)
+	     	"success": "https://tiendaazul.onrender.com/success/" + str(id),
+	 		"failure": "https://tiendaazul.onrender.com/failure/" + str(id),
+	 		"pending": "https://tiendaazul.onrender.com/pending/" + str(id)
 	     },
         "auto_return": "approved"
     }
 
     preference_response = sdk.preference().create(preference_data)
     preference = preference_response["response"]
+
     return preference

@@ -14,6 +14,7 @@ import { Success } from "./component/back_urls/success.jsx"
 import { Failure } from "./component/back_urls/failure.jsx";
 import { Pending } from "./component/back_urls/pending.jsx";
 import { AgregarCelular } from "./component/agregarCelular.jsx";
+import { Notificaciones } from "./component/notificaciones.jsx"
 
 //create your first component
 const Layout = () => {
@@ -40,6 +41,9 @@ const Layout = () => {
                         <Route element={<Failure />} path="/failure/:theid" />
                         {/* Compra pendiente */}
                         <Route element={<Pending />} path="/pending/:theid" />
+
+                        {/* WebHooks */}
+                        <Route element={<Notificaciones />} path="/notificaciones" />
 
                         {/* Por defecto en la plantilla */}
                         <Route element={<Demo />} path="/demo" />

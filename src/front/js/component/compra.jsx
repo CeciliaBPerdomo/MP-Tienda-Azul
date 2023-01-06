@@ -24,7 +24,7 @@ export const Compra = () => {
         await actions.pagoMercadoPago(id, marca, modelo, foto, precio, cantidad)
         
         //Sandbox
-        let direccion = store.mercadopago.sandbox_init_point
+        let direccion = await store.mercadopago.sandbox_init_point
         window.location.replace(direccion)
     }
 
