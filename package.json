@@ -73,12 +73,23 @@
 		]
 	},
 	"dependencies": {
+		"assert": "^2.0.0",
+		"asserts": "^4.0.2",
 		"axios": "^1.2.1",
+		"crypto": "^1.0.1",
+		"crypto-browserify": "^3.12.0",
 		"mercadopago": "^1.5.14",
+		"ngrok": "^4.3.3",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-dom": "^16.8.4",
 		"react-polyfills": "0.0.1",
-		"react-router-dom": "^6.3.0"
+		"react-router-dom": "^6.3.0",
+		"stream": "^0.0.2",
+		"stream-browserify": "^3.0.0"
+	},
+	"browser": {
+		"crypto": false,
+		"stream": false
 	}
 }

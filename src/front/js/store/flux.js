@@ -1,6 +1,7 @@
 import axios from "axios"
 let direccion = process.env.BACKEND_URL;
 let accessToken = process.env.GETACCESS_TOKEN;
+let tokenMP = process.env.ACCESS_TOKEN
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -9,6 +10,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			celular: {},
 			mercadopago: {}, 
 			comprador: [],
+			pagos: [], 
+			idPago: {}
 		},
 		actions: {
 			////////////////////////////////////////////////
@@ -118,10 +121,31 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
 
+			infoPagos: async (id) => {
+				try {
+					const response = await axios.get(
+						// 1311762485
+						// payment_id=1311762621
+						"https://api.mercadopago.com/v1/payments/" + id, {
+						headers: { 
+                            Authorization: "Bearer " + accessToken,
+                        }
+					})
+					setStore({
+                        pagos: response.data,
+                    });
+					// Id de pago
+					console.log(response.data)
+				} catch(error){
+					console.log(error);
+				}
+			},
+
 			obtenerPagoMercado: async (id) => {
 				try {
 					const response = await axios.get(
 						// 1311762485
+						// payment_id=1311762621
 						"https://api.mercadopago.com/v1/payments/" + id, {
 						headers: { 
                             Authorization: "Bearer " + accessToken,
@@ -129,9 +153,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					setStore({
                         comprador: response.data,
+						idPago: response.data.id
                     });
-					// Id de pago
-					console.log(response.data)
 				} catch(error){
 					console.log(error);
 				}

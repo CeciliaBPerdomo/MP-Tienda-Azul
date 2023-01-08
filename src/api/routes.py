@@ -135,8 +135,10 @@ def createPreference():
             ],
         },
         "external_reference": "cecilia.perdomo@gmail.com",
-        #URL donde van las notificaciones de pago.
-        "notification_url": "https://tiendaazul.onrender.com/notificaciones", 
+        # URL donde van las notificaciones de pago.
+        # Para pruebas de las notificaciones instalar ngrok (choco install ngrok en cmd como admin)
+        # https://ngrok.com/docs/getting-started, genera un url como copia del localhost
+        "notification_url": "https://tiendaazul.onrender.com/notificaciones", #/str(id)
         # Adonde te re-dirige en caso de exito total / o no
         "back_urls": {
 	     	"success": "https://tiendaazul.onrender.com/success/" + str(id),
@@ -149,4 +151,4 @@ def createPreference():
     preference_response = sdk.preference().create(preference_data)
     preference = preference_response["response"]
 
-    return preference
+    return preference, 200

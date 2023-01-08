@@ -36,7 +36,11 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js']
+    extensions: ['*', '.js'], 
+    fallback: {
+      // 👇️👇️👇️ add this 👇️👇️👇️
+      "assert": require.resolve("assert"),
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
