@@ -11,7 +11,8 @@ from sqlalchemy import desc
 # SDK de Mercado Pago
 import mercadopago
 # Agrega credenciales
-sdk = str(mercadopago.SDK(os.getenv("ACCESS_TOKEN")))
+sdk = mercadopago.SDK(os.getenv('ACCESS_TOKEN'))
+GETACCESS_TOKEN = os.getenv("GETACCESS_TOKEN")
 
 api = Blueprint('api', __name__)
 
@@ -121,7 +122,7 @@ def createPreference():
             "surname": "Landa",
             "phone": {
                 "area_code": "+598",
-                "number": "99123456"
+                "number": "991234567"
             }
         },
         "payment_methods": {
