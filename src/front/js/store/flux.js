@@ -1,7 +1,6 @@
 import axios from "axios";
 let direccion = process.env.BACKEND_URL;
 let accessToken = process.env.GETACCESS_TOKEN;
-let tokenMP = process.env.ACCESS_TOKEN;
 
 const getState = ({ getStore, getActions, setStore }) => {
   return {
