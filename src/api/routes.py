@@ -11,7 +11,7 @@ from sqlalchemy import desc
 # SDK de Mercado Pago
 import mercadopago
 # Agrega credenciales
-sdk = mercadopago.SDK(os.getenv('ACCESS_TOKEN'))
+sdk = str(mercadopago.SDK(os.getenv("ACCESS_TOKEN")))
 
 api = Blueprint('api', __name__)
 
