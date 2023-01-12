@@ -40,3 +40,30 @@ class Celular(db.Model):
             "precio": self.precio,
             "cantidad": self.cantidad
         }
+
+class Pagos(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    payment_id = db.Column(db.Integer, unique=False, nullable=False)
+    celular = db.Column(db.String(200), unique=False, nullable=False)
+    foto = db.Column(db.String(500), unique=False, nullable=False)
+    usuario = db.Column(db.String(500), unique=False, nullable=False)
+    mail = db.Column(db.String(500), unique=False, nullable=False)
+    precio = db.Column(db.String(10), unique=False, nullable=False)
+    tarjeta = db.Column(db.String(15), unique=False, nullable=False)
+    cuotas = db.Column(db.Integer, unique=False, nullable=False)
+
+    def __repr__(self):
+        return f'<Pagos {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "payment_id": self.payment_id,
+            "celular": self.celular,
+            "foto": self.foto,
+            "usuario": self.usuario,
+            "mail": self.mail,
+            "precio": self.precio,
+            "tarjeta": self.tarjeta,
+            "cuotas": self.cuotas
+        }

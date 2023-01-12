@@ -2,10 +2,11 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Celular
+from api.models import db, User, Celular, Pagos
 from api.utils import generate_sitemap, APIException
 import json
 import os
+from sqlalchemy import desc
 
 # SDK de Mercado Pago
 import mercadopago
@@ -121,7 +122,7 @@ def createPreference():
             "surname": "Landa",
             "phone": {
                 "area_code": "+598",
-                "number": "99387921"
+                "number": "99123456"
             }
         },
         "payment_methods": {
@@ -142,6 +143,7 @@ def createPreference():
         # Adonde te re-dirige en caso de exito total / o no
         "back_urls": {
 	     	"success": "https://tiendaazul.onrender.com/success/" + str(id),
+            #"success": "http://localhost:3000/success/" + str(id),
 	 		"failure": "https://tiendaazul.onrender.com/failure/" + str(id),
 	 		"pending": "https://tiendaazul.onrender.com/pending/" + str(id)
 	     },
@@ -152,3 +154,42 @@ def createPreference():
     preference = preference_response["response"]
 
     return preference, 200
+
+# Guarda la informacion del pago
+@api.route('/guardarPago', methods=['POST'])
+def postPago():
+    body = json.loads(request.data)
+    queryNewPago = Pagos.query.filter_by(payment_id=body["payment_id"]).first()
+
+    if queryNewPago is None: 
+        newPago = Pagos(
+            payment_id = body["payment_id"], 
+            celular = body["celular"], 
+            foto = body["foto"],
+            usuario = body["usuario"],
+            mail = body["mail"],
+            precio = body["precio"],
+            tarjeta = body["tarjeta"],
+            cuotas = body["cuotas"]
+        )
+
+        db.session.add(newPago)
+        db.session.commit()
+
+        response_body = { "msg": "Pago creado" }
+        return jsonify(response_body), 200
+    
+    response_body = { "msg": "Ya existe ese pago" }
+    return jsonify(response_body), 400
+
+# Listar pagos
+@api.route('/listarPagos', methods=['GET'])
+def getPagos():
+    pagos = Pagos.query.order_by(desc(Pagos.payment_id)).all()
+    results = list(map(lambda x: x.serialize(), pagos))
+
+    if results is None: 
+        response_body = {"msg": "No existe datos"}
+        return jsonify(response_body), 400
+
+    return jsonify(results), 200

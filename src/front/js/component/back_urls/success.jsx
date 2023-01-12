@@ -19,7 +19,7 @@ export const Success = () => {
         }
         
         getPago()
-    }, []);
+        }, []);
 
 
     return (
