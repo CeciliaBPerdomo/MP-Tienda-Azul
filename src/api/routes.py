@@ -10,9 +10,18 @@ from sqlalchemy import desc
 
 # SDK de Mercado Pago
 import mercadopago
+
+from mercadopago.config import RequestOptions
+
+request_options = RequestOptions(
+    #corporation_id="CORPORATION_ID",
+    integrator_id="dev_24c65fb163bf11ea96500242ac130004",
+   # platform_id="PLATFORM_ID"
+)
 # Agrega credenciales
-sdk = mercadopago.SDK(os.getenv('ACCESS_TOKEN'))
+sdk = mercadopago.SDK(os.getenv('ACCESS_TOKEN'), request_options=request_options)
 GETACCESS_TOKEN = os.getenv("GETACCESS_TOKEN")
+
 
 api = Blueprint('api', __name__)
 
@@ -100,7 +109,7 @@ def createPreference():
     preference_data = {
         "items": [
             {
-                "category_id": "cellular",
+                "category_id": "celular",
                 "title": marca + " " + modelo,
                 "quantity": 1,
                 "unit_price": precio, 
@@ -115,11 +124,13 @@ def createPreference():
                 {
                     "street_name": "calle falsa", 
                     "street_number": 123,
-                    "zip_code": 70000
+                    "zip_code": "70000"
                 },
             "email": "test_user_17805074@testuser.com",
             "name": "Lalo",
             "surname": "Landa",
+            "first_name": "Lalo", 
+            "last_name": "Landa",
             "phone": {
                 "area_code": "+598",
                 "number": "991234567"
@@ -139,11 +150,10 @@ def createPreference():
         # URL donde van las notificaciones de pago.
         # Para pruebas de las notificaciones instalar ngrok (choco install ngrok en cmd como admin)
         # https://ngrok.com/docs/getting-started, genera un url como copia del localhost
-        "notification_url": "https://tiendaazul.onrender.com/notificaciones", #/str(id)
+        "notification_url": "https://tiendaazul.onrender.com/notificaciones",
         # Adonde te re-dirige en caso de exito total / o no
         "back_urls": {
 	     	"success": "https://tiendaazul.onrender.com/success/" + str(id),
-            #"success": "http://localhost:3000/success/" + str(id),
 	 		"failure": "https://tiendaazul.onrender.com/failure/" + str(id),
 	 		"pending": "https://tiendaazul.onrender.com/pending/" + str(id)
 	     },
@@ -154,42 +164,3 @@ def createPreference():
     preference = preference_response["response"]
 
     return preference, 200
-
-# Guarda la informacion del pago
-@api.route('/guardarPago', methods=['POST'])
-def postPago():
-    body = json.loads(request.data)
-    queryNewPago = Pagos.query.filter_by(payment_id=body["payment_id"]).first()
-
-    if queryNewPago is None: 
-        newPago = Pagos(
-            payment_id = body["payment_id"], 
-            celular = body["celular"], 
-            foto = body["foto"],
-            usuario = body["usuario"],
-            mail = body["mail"],
-            precio = body["precio"],
-            tarjeta = body["tarjeta"],
-            cuotas = body["cuotas"]
-        )
-
-        db.session.add(newPago)
-        db.session.commit()
-
-        response_body = { "msg": "Pago creado" }
-        return jsonify(response_body), 200
-    
-    response_body = { "msg": "Ya existe ese pago" }
-    return jsonify(response_body), 400
-
-# Listar pagos
-@api.route('/listarPagos', methods=['GET'])
-def getPagos():
-    pagos = Pagos.query.order_by(desc(Pagos.payment_id)).all()
-    results = list(map(lambda x: x.serialize(), pagos))
-
-    if results is None: 
-        response_body = {"msg": "No existe datos"}
-        return jsonify(response_body), 400
-
-    return jsonify(results), 200

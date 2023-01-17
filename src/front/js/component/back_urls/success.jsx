@@ -15,12 +15,12 @@ export const Success = () => {
         let id = valorURL.get('payment_id')
 
         const getPago = async () => {
+            //await actions.generarPago()
             await actions.obtenerPagoMercado(id)
         }
         
         getPago()
         }, []);
-
 
     return (
         <>

@@ -20,12 +20,15 @@ export const Compra = () => {
         let precio = parseInt(store.celular.precio)
         cantidad = parseInt(cantidad)
 
+        //console.log("Hola pagar")
+
         // Mercado pago
-        await actions.pagoMercadoPago(id, marca, modelo, foto, precio, cantidad)
+        //await actions.generarPago(id, marca, modelo, foto, precio, cantidad)
+       await actions.pagoMercadoPago(id, marca, modelo, foto, precio, cantidad)
         
         //Sandbox
-        let direccion = await store.mercadopago.sandbox_init_point
-        window.location.replace(direccion)
+       let direccion = await store.mercadopago.init_point
+       window.location.replace(direccion)
     }
 
     return (

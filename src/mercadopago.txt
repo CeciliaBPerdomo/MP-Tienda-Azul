@@ -1,0 +1,24 @@
+Como configurar mercado pago y no morir en el intento. 
+
+1. Video tutorial muy util: https://www.youtube.com/watch?v=w1VBrIuSw2o
+   Web: https://dev.to/nicolascastrogarcia/como-integrar-mercado-pago-a-tu-web-34al
+   Github de mercado pago: https://github.com/mercadopago (Por si estas mas perdida que vieja en el centro.)
+   Lo mejor que me paso: https://dev.to/jarraga/mercadopago-checkout-pro-postman-no-library-1kh3
+
+   Pagina para pasar del puto cURL a Fetch: https://kigiri.github.io/fetch/
+
+2. Instalar mercado pago en el front y en el backend
+    - npm i mercadopago
+    - pipenv i mercadopago
+
+3. Crear aplicacion en la app de mercado pago. La misma te va a dar un ACCESS_TOKEN
+    - Para la certificacion de Uruguay es: APP_USR-2815099995655791-092911-c238fdac299eadc66456257445c5457d-1160950667)
+
+4. Crear usuarios (clientes) de prueba. (Para probar se crea dos usuarios, 
+   uno comprador y otro vendedor, no se puede comprar a uno mismo).
+   Para la certificacion el mail del usuario de prueba es: test_user_17805074@testuser.com
+
+5. Pagos unicos (Crear preferencias): https://www.mercadopago.com.uy/developers/es/reference/preferences/_checkout_preferences/post
+    En el codigo esta en routes.py, hay campos obligatorios (items y back_urls), si se usa 
+    notification_url (no es obligatoria), la direccion usada tiene que existir, si no te da un error 
+    que te lleva tres dias averiguar que carajo es.
